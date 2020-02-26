@@ -7,9 +7,9 @@ class Asym_ReLU_Block(nn.Module):
     def __init__(self):
         super(Asym_ReLU_Block, self).__init__()
         self.conv1 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
-            3, 0), stride=1, padding=(1, 0), bias=False)
+            3, 1), stride=1, padding=(1, 0), bias=False)
         self.conv2 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
-            0, 3), stride=1, padding=(0, 1), bias=False)
+            1, 3), stride=1, padding=(0, 1), bias=False)
         self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x):
