@@ -62,11 +62,11 @@ def main():
     print("===> Building model")
     if opt.net == 'VDSR':
         model = Net()  # net
-    elif opt.net == 'VDSR':
+    elif opt.net == 'Asym_VDSR':
         model = Net()  # net
-    elif opt.net == 'VDSR':
+    elif opt.net == 'Back_Asym_VDSR':
         model = Net()  # net
-    elif opt.net == 'VDSR':
+    elif opt.net == 'Front_Asym_VDSR':
         model = Net()  # net
     criterion = nn.MSELoss(size_average=False)  # set loss
 
