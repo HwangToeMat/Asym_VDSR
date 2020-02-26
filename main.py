@@ -30,6 +30,7 @@ parser.add_argument("--weight-decay", "--wd", default=1e-4, type=float)
 parser.add_argument('--pretrained', default='', type=str)
 parser.add_argument("--gpus", default="0", type=str)
 parser.add_argument("--optimizer", default="SGD", type=str)
+parser.add_argument("--net", default="VDSR", type=str)
 
 
 def main():
@@ -59,7 +60,14 @@ def main():
         dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)  # read to DataLoader
 
     print("===> Building model")
-    model = Net()  # net
+    if opt.net == 'VDSR':
+        model = Net()  # net
+    elif opt.net == 'VDSR':
+        model = Net()  # net
+    elif opt.net == 'VDSR':
+        model = Net()  # net
+    elif opt.net == 'VDSR':
+        model = Net()  # net
     criterion = nn.MSELoss(size_average=False)  # set loss
 
     epoch = opt.start_epoch
