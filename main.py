@@ -142,7 +142,7 @@ def train(training_data_loader, optimizer, model, criterion, epoch):
         total_loss += loss.item()
         loss.backward()
         if opt.optimizer == 'SGD':
-            nn.utils.clip_grad_norm(model.parameters(), opt.clip)
+            nn.utils.clip_grad_norm_(model.parameters(), opt.clip)
         optimizer.step()
 
     epoch_loss = total_loss/len(training_data_loader)
