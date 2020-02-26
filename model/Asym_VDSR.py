@@ -19,7 +19,7 @@ class Asym_ReLU_Block(nn.Module):
 class Asym_Net(nn.Module):
     def __init__(self):
         super(Asym_Net, self).__init__()
-        self.residual_layer = self.make_layer(Conv_ReLU_Block, 18)
+        self.residual_layer = self.make_layer(Asym_ReLU_Block, 18)
         self.input = nn.Conv2d(
             in_channels=1, out_channels=64, kernel_size=3, stride=1, padding=1, bias=False)
         self.output = nn.Conv2d(
