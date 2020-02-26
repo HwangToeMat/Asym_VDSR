@@ -16,7 +16,7 @@ class Conv_ReLU_Block(nn.Module):
 
 class Asym_ReLU_Block(nn.Module):
     def __init__(self):
-        super(Conv_ReLU_Block, self).__init__()
+        super(Asym_ReLU_Block, self).__init__()
         self.conv = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
             3, 0), stride=1, padding=(1, 0), bias=False)
         self.conv = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
@@ -29,7 +29,7 @@ class Asym_ReLU_Block(nn.Module):
 
 class Front_Net(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(Front_Net, self).__init__()
         self.asym_layer = self.make_layer(Asym_ReLU_Block, 9)
         self.residual_layer = self.make_layer(Conv_ReLU_Block, 9)
         self.input = nn.Conv2d(
