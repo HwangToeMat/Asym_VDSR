@@ -27,7 +27,7 @@ class Asym_ReLU_Block(nn.Module):
         return self.relu(self.conv(x))
 
 
-class Net(nn.Module):
+class Front_Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         self.asym_layer = self.make_layer(Asym_ReLU_Block, 9)

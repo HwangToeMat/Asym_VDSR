@@ -27,7 +27,7 @@ class Asym_ReLU_Block(nn.Module):
         return self.relu(self.conv(x))
 
 
-class Net(nn.Module):
+class Back_Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         self.residual_layer = self.make_layer(Conv_ReLU_Block, 9)
