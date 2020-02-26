@@ -153,7 +153,7 @@ def train(training_data_loader, optimizer, model, criterion, epoch):
 
 def save_checkpoint(model, epoch, optimizer):
     model_out_path = "checkpoint/" + \
-        "VDSR_{}_epoch_{}.tar".format(opt.optimizer, epoch)
+        "{}_{}_epoch_{}.tar".format(opt.net, opt.optimizer, epoch)
     if not os.path.exists("checkpoint/"):
         os.makedirs("checkpoint/")
     torch.save({
