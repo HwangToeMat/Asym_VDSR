@@ -3,17 +3,17 @@ import torch.nn as nn
 from math import sqrt
 
 
-class Conv_ReLU_Block(nn.Module):
+class Asym_ReLU_Block(nn.Module):
     def __init__(self):
-        super(Conv_ReLU_Block, self).__init__()
-        self.conv = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
+        super(Asym_ReLU_Block, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
             3, 0), stride=1, padding=(1, 0), bias=False)
-        self.conv = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
+        self.conv2 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(
             0, 3), stride=1, padding=(0, 1), bias=False)
         self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x):
-        return self.relu(self.conv(x))
+        return self.relu(self.conv2(self.conv1(x)))
 
 
 class Asym_Net(nn.Module):
