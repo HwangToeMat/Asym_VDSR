@@ -63,11 +63,11 @@ def main():
     if opt.net == 'VDSR':
         model = Net()  # net
     elif opt.net == 'Asym_VDSR':
-        model = Net()  # net
+        model = Asym_Net()  # net
     elif opt.net == 'Back_Asym_VDSR':
-        model = Net()  # net
+        model = Back_Net()  # net
     elif opt.net == 'Front_Asym_VDSR':
-        model = Net()  # net
+        model = Front_Net()  # net
     criterion = nn.MSELoss(size_average=False)  # set loss
 
     epoch = opt.start_epoch
