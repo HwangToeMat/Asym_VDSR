@@ -53,6 +53,7 @@ class Back_Net(nn.Module):
         residual = x
         out = self.relu(self.input(x))
         out = self.residual_layer(out)
+        out = self.asym_layer(out)
         out = self.output(out)
         out = torch.add(out, residual)
         return out
