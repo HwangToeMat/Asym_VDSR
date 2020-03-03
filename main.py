@@ -135,8 +135,8 @@ def train(training_data_loader, optimizer, model, criterion, epoch):
             batch[1], requires_grad=False)
         total_loss = 0
         if opt.cuda:
-            input = input.cuda()
-            label = label.cuda()
+            input = input.cuda() / 255
+            label = label.cuda() / 255
         output = model(input)
         loss = criterion(output, label)
         total_loss += loss.item()
