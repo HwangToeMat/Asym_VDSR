@@ -144,6 +144,9 @@ def train(training_data_loader, optimizer, model, criterion, epoch):
         if opt.optimizer == 'SGD':
             nn.utils.clip_grad_norm_(model.parameters(), opt.clip)
         optimizer.step()
+        if iteration % 100 == 0:
+            print("===> Epoch[{}]({}/{}): Loss: {:.10f}, PSNR : {:.10f}".format(
+                epoch, iteration, len(training_data_loader), loss.item(), PSNR(loss.item())))
 
     epoch_loss = total_loss/len(training_data_loader)
     psnr = PSNR(epoch_loss)
