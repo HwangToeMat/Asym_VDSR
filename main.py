@@ -17,7 +17,7 @@ import math
 
 # Training settings
 parser = argparse.ArgumentParser(description="PyTorch VDSR")
-parser.add_argument("--batchSize", type=int, default=64)
+parser.add_argument("--batchSize", type=int, default=16)
 parser.add_argument("--nEpochs", type=int, default=80)
 parser.add_argument("--lr", type=float, default=0.1)
 parser.add_argument("--step", type=int, default=20)
