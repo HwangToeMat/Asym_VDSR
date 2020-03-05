@@ -14,13 +14,14 @@ from model.Front_Asym_VDSR import Front_Net
 from dataset_h5 import Read_dataset_h5
 import numpy as np
 import math
+from eval_main import eval_model
 
 # Training settings
 parser = argparse.ArgumentParser(description="PyTorch VDSR")
-parser.add_argument("--batchSize", type=int, default=16)
+parser.add_argument("--batchSize", type=int, default=64)
 parser.add_argument("--nEpochs", type=int, default=80)
 parser.add_argument("--lr", type=float, default=0.1)
-parser.add_argument("--step", type=int, default=20)
+parser.add_argument("--step", type=int, default=10)
 parser.add_argument("--cuda", action="store_true")
 parser.add_argument("--start-epoch", default=1, type=int)
 parser.add_argument("--clip", type=float, default=0.4)
@@ -106,7 +107,6 @@ def main():
     print("===> Training")
     for epoch_ in range(epoch, opt.nEpochs + 1):
         train(training_data_loader, optimizer, model, criterion, epoch_)
-        save_checkpoint(model, epoch_, optimizer)
 
 
 def adjust_learning_rate(optimizer, epoch):
@@ -135,14 +135,14 @@ def train(training_data_loader, optimizer, model, criterion, epoch):
             batch[1], requires_grad=False)
         total_loss = 0
         if opt.cuda:
-            input = input.cuda() / 255
-            label = label.cuda() / 255
+            input = input.cuda() / 255.
+            label = label.cuda() / 255.
         output = model(input)
         loss = criterion(output, label)
         total_loss += loss.item()
         loss.backward()
         if opt.optimizer == 'SGD':
-            nn.utils.clip_grad_norm_(model.parameters(), opt.clip)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), opt.clip)
         optimizer.step()
         if iteration % 100 == 0:
             print("===> Epoch[{}]({}/{}): Loss: {:.10f}, PSNR : {:.10f}".format(
@@ -152,13 +152,15 @@ def train(training_data_loader, optimizer, model, criterion, epoch):
     psnr = PSNR(epoch_loss)
     print("===> Epoch[{}]: loss : {:.10f} ,PSNR : {:.10f}".format(
         epoch, epoch_loss, psnr))
+    save_checkpoint(model, epoch, optimizer)
+    eval_model(model, "Set5", opt.cuda, opt.gpus)
 
 
 def save_checkpoint(model, epoch, optimizer):
-    model_out_path = "checkpoint/" + \
-        "{}_{}_epoch_{}.tar".format(opt.net, opt.optimizer, epoch)
-    if not os.path.exists("checkpoint/"):
-        os.makedirs("checkpoint/")
+    model_out_path = "checkpoint/{}/{}_{}_epoch_{}.tar".format(
+        opt.net, opt.net, opt.optimizer, epoch)
+    if not os.path.exists("checkpoint/{}/".format(opt.net)):
+        os.makedirs("checkpoint/{}/".format(opt.net))
     torch.save({
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
