@@ -4,6 +4,8 @@ Create lightweight models using Asymmetric_CNN in VDSR
 
 # Super-Resolution with fewer parameters by using Asymmetric convolution
 
+[paper](https://github.com/HwangToeMat/Asym_VDSR/raw/master/Multi%20scale%20Super-Resolution%20with%20fewer%20parameters.pdf)
+
 ## 연구 주제 
 
 <img src="https://github.com/HwangToeMat/HwangToeMat.github.io/blob/master/AI-Project/image/AsymVDSR/img2.png?raw=true" style="max-width:100%;margin-left: auto; margin-right: auto; display: block;">
