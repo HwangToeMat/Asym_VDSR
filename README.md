@@ -49,7 +49,7 @@ Create lightweight models using Asymmetric_CNN in VDSR
 
 <img src="https://github.com/HwangToeMat/HwangToeMat.github.io/blob/master/AI-Project/image/AsymVDSR/img6.png?raw=true" style="max-width:100%;margin-left: auto; margin-right: auto; display: block;">
 
-* 기존모델과 비교 했을때 Asym_VDSR의 **실행시간이 약 35%(0.063초 -> 0.041초) 감소**
+* 기존모델과 비교 했을때 Asym_VDSR의 **실행시간이 약 35%(0.063초 -> 0.041초) 감소(GPU 기준)**
 * 모델의 **용량이 약 34%(2.68MB -> 1.78MB) 감소**
 * PSNR은 기존모델이 약간 높음
 
